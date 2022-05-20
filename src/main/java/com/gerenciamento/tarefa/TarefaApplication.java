@@ -43,6 +43,9 @@ public class TarefaApplication {
 				clientes.atualizarCliente(c);
 			});
 
+			System.out.println("Listando todos Clientes");
+			todosClientes.forEach(System.out::println);
+
 			System.out.println("Pegando Cliente");
 			clientes.buscarPorNome("All").forEach(System.out::println);
 			;
@@ -51,7 +54,7 @@ public class TarefaApplication {
 			clientes.obterTodos().forEach(c -> {
 				clientes.deleteCliente(c);
 			});
-			;
+			
 
 			todosClientes = clientes.obterTodos();
 
