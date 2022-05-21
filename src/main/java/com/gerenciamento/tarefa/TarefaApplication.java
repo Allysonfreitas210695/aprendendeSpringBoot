@@ -25,44 +25,14 @@ public class TarefaApplication {
 	public CommandLineRunner init(@Autowired Clientes clientes) {
 		return args -> {
 			System.out.println("Salvando Cliente");
-			Cliente cliente = new Cliente();
-			cliente.setNome("Allyson");
-			clientes.salva(cliente);
-
-			Cliente cliente2 = new Cliente();
-			cliente2.setNome("Bruno");
-			clientes.salva(cliente2);
+			clientes.save( new Cliente("Allyson"));
+			clientes.save(new Cliente("Bruno"));
 
 			System.out.println("Listando todos Clientes");
-			List<Cliente> todosClientes = clientes.obterTodos();
+			List<Cliente> todosClientes = clientes.encontraPorNome("All");
 			todosClientes.forEach(System.out::println);
 
-			System.out.println("Atualizado Clientes");
-			todosClientes.forEach(c -> {
-				c.setNome(c.getNome() + " Atualizado");
-				clientes.atualizarCliente(c);
-			});
-
-			System.out.println("Listando todos Clientes");
-			todosClientes.forEach(System.out::println);
-
-			System.out.println("Pegando Cliente");
-			clientes.buscarPorNome("All").forEach(System.out::println);
-			;
-
-			System.out.println("Deletando Clientes");
-			clientes.obterTodos().forEach(c -> {
-				clientes.deleteCliente(c);
-			});
 			
-
-			todosClientes = clientes.obterTodos();
-
-			if (todosClientes.isEmpty()) {
-				System.out.println("Nenhum Cliente encontrado");
-			} else {
-				todosClientes.forEach(System.out::println);
-			}
 
 		};
 	}
