@@ -21,8 +21,12 @@ public class Cliente {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
+
   @Column(name = "nome", length = 100)
   private String nome;
+
+  @Column(name = "cpf")
+  private String cpf;
 
   @JsonIgnore
   @OneToMany(mappedBy = "cliente", fetch= FetchType.LAZY)
@@ -34,6 +38,14 @@ public class Cliente {
 
   public Set<Pedido> getPedidos() {
     return pedidos;
+  }
+
+  public String getCpf() {
+    return cpf;
+  }
+
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
   }
 
   public Cliente(){

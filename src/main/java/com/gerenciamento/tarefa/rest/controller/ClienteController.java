@@ -1,9 +1,13 @@
 package com.gerenciamento.tarefa.rest.controller;
 
+import java.util.List;
 import java.util.Optional;
 import com.gerenciamento.tarefa.domain.entity.Cliente;
 import com.gerenciamento.tarefa.repository.Clientes;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -73,5 +77,17 @@ public class ClienteController {
       }).orElseGet( () -> ResponseEntity.notFound().build());
   }
 
+  @GetMapping("/clientes")
+  @ResponseBody
+  public ResponseEntity find( Cliente filtro ) {
+    ExampleMatcher matcher = ExampleMatcher
+    .matching()
+    .withIgnoreCase()
+    .withStringMatcher( ExampleMatcher.StringMatcher.CONTAINING);
+
+    Example example = Example.of(filtro, matcher);
+    List<Cliente> lista = clientes.findAll(example); 
+    return ResponseEntity.ok(lista);
+  }
 
 }
