@@ -1,9 +1,14 @@
 package com.gerenciamento.tarefa;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.gerenciamento.tarefa.domain.entity.Cliente;
+import com.gerenciamento.tarefa.domain.entity.Pedido;
 import com.gerenciamento.tarefa.repository.Clientes;
+import com.gerenciamento.tarefa.repository.Pedidos;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,15 +27,26 @@ public class TarefaApplication {
 	}
 
 	@Bean
-	public CommandLineRunner init(@Autowired Clientes clientes) {
+	public CommandLineRunner init(@Autowired Clientes clientes, @Autowired Pedidos pedidos ) {
 		return args -> {
 			System.out.println("Salvando Cliente");
-			clientes.save( new Cliente("Allyson"));
-			clientes.save(new Cliente("Bruno"));
+			// clientes.save( new Cliente("Allyson"));
+			Cliente fulano = new Cliente("Allyson");
+			clientes.save(fulano);
 
-			System.out.println("Listando todos Clientes");
-			List<Cliente> todosClientes = clientes.encontraPorNome("All");
-			todosClientes.forEach(System.out::println);
+			Pedido p = new Pedido();
+			p.setCliente(fulano);
+		  p.setDataPedidd(LocalDate.now());
+      p.setTotal(BigDecimal.valueOf(100));
+
+			pedidos.save(p);
+
+		  // Cliente cliente =	clientes.findClienteFetchPedido(fulano.getId());
+			// System.out.println(cliente);
+			// System.out.println(cliente.getPedidos());
+
+		  pedidos.findByCliente(fulano).forEach(System.out::println);
+
 		};
 	}
 
