@@ -3,10 +3,32 @@ package com.gerenciamento.tarefa.domain.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.annotation.Generated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "pedido")
 public class Pedido {
+
+  @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
+
+  @ManyToOne
+  @JoinColumn(name = "cliente_id")
   private Cliente cliente;
-  private LocalDate dataPedidd;
+
+  @Column(name = "data_pedido", length = 20, precision = 2)
+  private LocalDate dataPedido;
+
   private BigDecimal total;
 
 
@@ -14,8 +36,8 @@ public class Pedido {
     return cliente;
   }
 
-  public LocalDate getDataPedidd() {
-    return dataPedidd;
+  public LocalDate getDataPedido() {
+    return dataPedido;
   }
 
   public Integer getId() {
@@ -30,8 +52,8 @@ public class Pedido {
     this.cliente = cliente;
   }
 
-  public void setDataPedidd(LocalDate dataPedidd) {
-    this.dataPedidd = dataPedidd;
+  public void setDataPedidd(LocalDate dataPedido) {
+    this.dataPedido = dataPedido;
   }
 
   public void setId(Integer id) {
