@@ -2,8 +2,7 @@ package com.gerenciamento.tarefa.domain.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
-import javax.annotation.Generated;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -26,12 +26,23 @@ public class Pedido {
   @JoinColumn(name = "cliente_id")
   private Cliente cliente;
 
-  @Column(name = "data_pedido", length = 20, precision = 2)
+  @Column(name = "data_pedido")
   private LocalDate dataPedido;
-
+  
+  @Column(name = "total", length = 20, precision = 2)
   private BigDecimal total;
 
+  @OneToMany(mappedBy = "pedido")
+  private List<Item_Pedido> itens;
 
+  public List<Item_Pedido> getItens() {
+    return itens;
+  }
+
+  public void setItens(List<Item_Pedido> itens) {
+    this.itens = itens;
+  }
+  
   public Cliente getCliente() {
     return cliente;
   }

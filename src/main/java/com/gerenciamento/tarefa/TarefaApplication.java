@@ -31,9 +31,6 @@ public class TarefaApplication {
 			System.out.println("Listando todos Clientes");
 			List<Cliente> todosClientes = clientes.encontraPorNome("All");
 			todosClientes.forEach(System.out::println);
-
-			
-
 		};
 	}
 
