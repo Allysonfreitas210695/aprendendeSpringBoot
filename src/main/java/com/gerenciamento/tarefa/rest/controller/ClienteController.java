@@ -1,15 +1,12 @@
 package com.gerenciamento.tarefa.rest.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 import java.util.Optional;
-
 import com.gerenciamento.tarefa.domain.entity.Cliente;
 import com.gerenciamento.tarefa.repository.Clientes;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,4 +41,19 @@ public class ClienteController {
 
     return ResponseEntity.ok(clienteSalvo);
   }
+
+  @DeleteMapping("/cliente/{id}")
+  @ResponseBody
+  public ResponseEntity delete(@PathVariable Integer id){
+    Optional<Cliente> clienteDeleta = clientes.findById(id);
+
+    if(clienteDeleta.isPresent()){
+      clientes.delete(clienteDeleta.get());
+      return ResponseEntity.noContent().build();
+    }
+
+    return ResponseEntity.noContent().build();
+  }
+
+
 }
