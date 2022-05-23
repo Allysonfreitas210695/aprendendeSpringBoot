@@ -1,8 +1,6 @@
 package com.gerenciamento.tarefa.domain.entity;
 
 import java.util.Set;
-
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

@@ -1,5 +1,6 @@
 package com.gerenciamento.tarefa.rest.controller;
 
+import com.gerenciamento.tarefa.domain.entity.Pedido;
 import com.gerenciamento.tarefa.services.PedidoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
