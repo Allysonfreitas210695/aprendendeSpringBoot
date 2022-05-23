@@ -1,6 +1,6 @@
 package com.gerenciamento.tarefa.rest.controller;
 
-import com.gerenciamento.tarefa.repository.Pedidos;
+import com.gerenciamento.tarefa.services.PedidoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PedidoController {
   
   @Autowired
-  private Pedidos pedidos;
+  private PedidoService pedidos;
 
-  
+
 }
