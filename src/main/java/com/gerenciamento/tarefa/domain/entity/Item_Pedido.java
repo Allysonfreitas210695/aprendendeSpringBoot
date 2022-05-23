@@ -9,6 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "item_pedido")
 public class Item_Pedido {
@@ -27,36 +34,4 @@ public class Item_Pedido {
 
   @Column(name="qtd")
   private Integer qtd;
-
-  public Integer getId() {
-    return id;
-  }
-
-  public Pedido getPedido() {
-    return pedido;
-  }
-
-  public Produto getProduto() {
-    return produto;
-  }
-
-  public Integer getQtd() {
-    return qtd;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public void setPedido(Pedido pedido) {
-    this.pedido = pedido;
-  }
-
-  public void setProduto(Produto produto) {
-    this.produto = produto;
-  }
-
-  public void setQtd(Integer qtd) {
-    this.qtd = qtd;
-  }
 }

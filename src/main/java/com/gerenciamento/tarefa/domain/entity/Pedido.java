@@ -13,7 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "pedido")
 public class Pedido {
@@ -34,50 +40,4 @@ public class Pedido {
 
   @OneToMany(mappedBy = "pedido")
   private List<Item_Pedido> itens;
-
-  public List<Item_Pedido> getItens() {
-    return itens;
-  }
-
-  public void setItens(List<Item_Pedido> itens) {
-    this.itens = itens;
-  }
-  
-  public Cliente getCliente() {
-    return cliente;
-  }
-
-  public LocalDate getDataPedido() {
-    return dataPedido;
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public BigDecimal getTotal() {
-    return total;
-  }
-
-  public void setCliente(Cliente cliente) {
-    this.cliente = cliente;
-  }
-
-  public void setDataPedidd(LocalDate dataPedido) {
-    this.dataPedido = dataPedido;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public void setTotal(BigDecimal total) {
-    this.total = total;
-  }
-
-  @Override
-  public String toString() {
-    // TODO Auto-generated method stub
-    return "{ id: " + id + ", total: " + total + " }";
-  }
 }

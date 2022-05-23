@@ -12,6 +12,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name="cliente")
 public class Cliente {
@@ -29,57 +36,4 @@ public class Cliente {
   @JsonIgnore
   @OneToMany(mappedBy = "cliente", fetch= FetchType.LAZY)
   private Set<Pedido> pedidos;
-
-  public void setPedidos(Set<Pedido> pedidos) {
-    this.pedidos = pedidos;
-  }
-
-  public Set<Pedido> getPedidos() {
-    return pedidos;
-  }
-
-  public String getCpf() {
-    return cpf;
-  }
-
-  public void setCpf(String cpf) {
-    this.cpf = cpf;
-  }
-
-  public Cliente(){
-
-  }
-
-  public Cliente(String nome){
-    this.nome = nome;
-  }
-
-  public Cliente(Integer id, String nome){
-    this.nome = nome;
-    this.id = id;
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public String getNome() {
-    return nome;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public void setNome(String nome) {
-    this.nome = nome;
-  }
-
-  @Override
-  public String toString() {
-    return "Cliente{" +
-            "ID=" + this.id +
-            ", NOME=" + this.nome + '\'' +
-            "}";
-  }
 }
